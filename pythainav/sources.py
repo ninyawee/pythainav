@@ -1,8 +1,8 @@
-from typing import List
-
+import base64
 import datetime
 from abc import ABC, abstractmethod
 from functools import lru_cache
+from typing import Literal
 
 import dateparser
 import requests
@@ -24,46 +24,48 @@ class Source(ABC):
 
 class Finnomena(Source):
     base = furl("https://www.finnomena.com/fn3/api/fund/")
+    base_v2 = furl("https://www.finnomena.com/fn3/api/fund/v2/")
 
     def __init__(self):
         super().__init__()
 
-    def _find_earliest(self, navs: List[Nav], date: str):
-        navs.sort(key=lambda x: x.updated, reverse=True)
+    def _find_earliest(self, navs: list[Nav], date: str):
+        # sort a copy: get_range() is lru_cached, so navs is a shared object
+        ordered = sorted(navs, key=lambda x: x.updated, reverse=True)
 
         date = dateparser.parse(date)
-        for nav in navs:
+        for nav in ordered:
             if date >= nav.updated:
                 return nav
         return None
 
     def get(self, fund: str, date: str = None):
+        fund = fund.lower()
+
+        # Finnomena retired the nav/latest endpoint (now returns {}); derive the
+        # NAV from the working v2 range endpoint instead. Pull the full history
+        # ("MAX") so both the latest lookup and any historical `date` resolve
+        # regardless of how old the fund's most recent NAV is.
+        navs = self.get_range(fund, range="MAX")
 
         if date:
-            navs = self.get_range(fund)
             return self._find_earliest(navs, date)
 
-        name2fund = self.list()
+        if not navs:
+            return None
 
-        url = self.base / "nav" / "latest"
-        url.args["fund"] = name2fund[fund]["id"]
-
-        # convert to str
-        url = url.url
-
-        nav = requests.get(url).json()
-        nav = Nav(
-            value=float(nav["value"]),
-            updated=dateparser.parse(nav["nav_date"]),
+        latest = max(navs, key=lambda nav: nav.updated)
+        return Nav(
+            value=latest.value,
+            updated=latest.updated,
             tags={"latest"},
             fund=fund,
         )
-        return nav
 
     # cache here should be sensible since the fund is not regulary update
     # TODO: change or ttl cache with timeout = [1 hour, 1 day]
     @lru_cache(maxsize=1024)
-    def get_range(self, fund: str, period="SI"):
+    def get_range_v1(self, fund: str, period="SI"):
         name2fund = self.list()
 
         url = self.base / "nav" / "q"
@@ -90,12 +92,59 @@ class Finnomena(Source):
 
     # cache here should be sensible since the fund is not regulary update
     # TODO: change or ttl cache with timeout = [1 hour, 1 day]
+    @lru_cache(maxsize=1024)
+    def get_range(
+        self,
+        fund: str,
+        range: Literal[
+            "1D", "1W", "1M", "6M", "YTD", "1Y", "3Y", "5Y", "10Y", "MAX"
+        ] = "1Y",
+    ):
+        name2fund = self.list()
+
+        # /fn3/api/fund/v2/ public/funds/F00000IT9T/nav/q
+        url = (
+            self.base_v2
+            / "public"
+            / "funds"
+            / name2fund[fund]["id"]
+            / "nav"
+            / "q"
+        )
+        url.args["range"] = range
+
+        # convert to str
+        url = url.url
+
+        navs_response = requests.get(url).json()
+
+        if not navs_response["status"]:
+            raise Exception(f"response to {url} is invalid")
+
+        navs = []
+        for nav_resp in navs_response["data"]["navs"]:
+            date = dateparser.parse(nav_resp["date"])
+            date = date.replace(tzinfo=None)
+            nav = Nav(
+                value=float(nav_resp["value"]),
+                updated=date,
+                tags={},
+                fund=fund,
+            )
+            nav.amount = nav_resp["amount"]
+            navs.append(nav)
+
+        return navs
+
+    # cache here should be sensible since the fund is not regulary update
+    # TODO: change or ttl cache with timeout = [1 hour, 1 day]
+    # TODO: New API exists /fn3/api/fund/public/filter/overview
     @lru_cache(maxsize=1)
     def list(self):
         url = self.base / "public" / "list"
         url = url.url
         funds = requests.get(url).json()
-        return {fund["short_code"]: fund for fund in funds}
+        return {fund["short_code"].lower(): fund for fund in funds}
 
     # def _list(self, )
 

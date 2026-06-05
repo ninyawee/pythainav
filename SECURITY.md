@@ -7,7 +7,7 @@
 
 Vulnerabilities can be reported by emailing core members:
 
-- CircleOnCircles [me@nutchanon.org](mailto:me@nutchanon.org)
+- ninyawee [me@nutchanon.org](mailto:me@nutchanon.org)
 
 Please include the requested information listed below (as much as you can provide) to help us better understand the nature and scope of the possible issue:
 

@@ -6,7 +6,7 @@
   "commit": false,
   "contributors": [
     {
-      "login": "CircleOnCircles",
+      "login": "ninyawee",
       "name": "Nutchanon Ninyawee",
       "avatar_url": "https://avatars2.githubusercontent.com/u/8089231?v=4",
       "profile": "http://nutchanon.org",
@@ -35,11 +35,29 @@
         "code",
         "test"
       ]
+    },
+    {
+      "login": "samupra",
+      "name": "Pongpira Upra",
+      "avatar_url": "https://avatars.githubusercontent.com/u/24209940?v=4",
+      "profile": "https://github.com/samupra",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "namv2012",
+      "name": "namv2012",
+      "avatar_url": "https://avatars.githubusercontent.com/u/50385570?v=4",
+      "profile": "https://github.com/namv2012",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
   "projectName": "pythainav",
-  "projectOwner": "CircleOnCircles",
+  "projectOwner": "ninyawee",
   "repoType": "github",
   "repoHost": "https://github.com",
   "skipCi": true

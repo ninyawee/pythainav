@@ -1,0 +1,38 @@
+[tools]
+python = "3.12"
+uv = "latest"
+ruff = "latest"
+hk = "latest"
+pkl = "latest"
+
+[tasks.install]
+description = "Install dependencies into a local .venv via uv"
+run = "uv sync"
+
+[tasks.test]
+description = "Run the test suite"
+run = "uv run pytest"
+
+[tasks.lint]
+description = "Lint with ruff"
+run = "ruff check ."
+
+[tasks.fmt]
+description = "Format with ruff"
+run = "ruff format ."
+
+[tasks.check]
+description = "Lint + format check (no writes)"
+run = ["ruff check .", "ruff format --check ."]
+
+[tasks.docs]
+description = "Serve the docs locally"
+run = "uv run mkdocs serve"
+
+[tasks.build]
+description = "Build sdist + wheel"
+run = "uv build"
+
+[tasks.setup-hk]
+description = "Install git hooks via hk"
+run = "hk install"

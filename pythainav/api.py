@@ -1,4 +1,4 @@
-from typing import List
+from typing import Literal
 
 from . import sources
 from .nav import Nav
@@ -28,7 +28,7 @@ def get(fund_name, *, source="finnomena", date=None, **kargs) -> Nav:
     Nav(value=4.2696, updated='20/01/2020', tags={'latest'}, fund='KT-PRECIOUS')
     ```
     """
-    fund_name = fund_name.upper()
+    fund_name = fund_name
 
     source2class = {
         "finnomena": sources.Finnomena,
@@ -43,8 +43,15 @@ def get(fund_name, *, source="finnomena", date=None, **kargs) -> Nav:
 
 
 def get_all(
-    fund_name, *, source="finnomena", asDataFrame=False, **kargs
-) -> List[Nav]:
+    fund_name,
+    *,
+    source="finnomena",
+    asDataFrame=False,
+    range: Literal[
+        "1D", "1W", "1M", "6M", "YTD", "1Y", "3Y", "5Y", "10Y", "MAX"
+    ] = "1Y",
+    **kargs,
+) -> list[Nav]:
     """
     Gets the latest NAV
 
@@ -53,6 +60,7 @@ def get_all(
     * **fund_name** - Fund name found in finnomena such as `TISTECH-A`
     * **source** - *(optional)* Data source for pull data. See Data Sources
     section in the documentation for all availiable options.
+    * **range** - *(optional)* time period defalut to 1 year, avaliable options are "1D", "1W", "1M", "6M", "YTD", "1Y", "3Y", "5Y", "10Y", "MAX"
     * **asDataFrame** - *(optional)* return pandas dataframe instead.
     * **subscription_key** - *(optional)* Subscription key that required for
     a data source like `sec` (a.k.a)
@@ -84,7 +92,7 @@ def get_all(
     [2265 rows x 4 columns]
     ```
     """
-    fund_name = fund_name.upper()
+    fund_name = fund_name.lower()
 
     source2class = {
         "finnomena": sources.Finnomena,
@@ -92,7 +100,7 @@ def get_all(
     }
     _source = source2class[source](**kargs)
 
-    navs = _source.get_range(fund_name)
+    navs = _source.get_range(fund_name, range=range)
 
     if asDataFrame:
         pd = import_optional_dependency("pandas")
