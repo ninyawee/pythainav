@@ -1,4 +1,5 @@
 import pytest
+
 import pythainav as nav
 
 
@@ -50,15 +51,15 @@ def test_sec_source():
     print(kt_nav)
     assert kt_nav.value >= 0
 
+
 def test_no_name_collide():
     f = nav.sources.Finnomena()
-    l = f.list()
-    l2 = list(l.keys())
-    assert len(l2) == len(set([x.lower() for x in l2]))
+    funds = f.list()
+    codes = list(funds.keys())
+    assert len(codes) == len({code.lower() for code in codes})
+
 
 def test_case_insensitive():
     kt_nav = nav.get("kt-precious")
     print(kt_nav)
     assert kt_nav.value >= 0
-
-
