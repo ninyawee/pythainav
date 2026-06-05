@@ -1,14 +1,8 @@
-from typing import List
-
-try:
-    from typing import Literal
-except ImportError:
-    from typing_extensions import Literal
-
-
+import base64
 import datetime
 from abc import ABC, abstractmethod
 from functools import lru_cache
+from typing import Literal
 
 import dateparser
 import requests
@@ -35,7 +29,7 @@ class Finnomena(Source):
     def __init__(self):
         super().__init__()
 
-    def _find_earliest(self, navs: List[Nav], date: str):
+    def _find_earliest(self, navs: list[Nav], date: str):
         # sort a copy: get_range() is lru_cached, so navs is a shared object
         ordered = sorted(navs, key=lambda x: x.updated, reverse=True)
 
@@ -49,8 +43,10 @@ class Finnomena(Source):
         fund = fund.lower()
 
         # Finnomena retired the nav/latest endpoint (now returns {}); derive the
-        # latest NAV from the working v2 range endpoint instead.
-        navs = self.get_range(fund)
+        # NAV from the working v2 range endpoint instead. Pull the full history
+        # ("MAX") so both the latest lookup and any historical `date` resolve
+        # regardless of how old the fund's most recent NAV is.
+        navs = self.get_range(fund, range="MAX")
 
         if date:
             return self._find_earliest(navs, date)

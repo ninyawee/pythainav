@@ -1,51 +1,41 @@
 # How to contribute
 
-## Dependencies
+## Setup
 
-We use `poetry` to manage the [dependencies](https://github.com/python-poetry/poetry).
-If you dont have `poetry` installed, you should run the command below.
-
-```bash
-make download-poetry
-```
-
-To install dependencies and prepare [`pre-commit`](https://pre-commit.com/) hooks you would need to run `install` command:
+This project uses [`mise`](https://mise.jdx.dev/) to manage tools (Python,
+[`uv`](https://docs.astral.sh/uv/), [`ruff`](https://docs.astral.sh/ruff/),
+[`hk`](https://hk.jdx.dev/)) and tasks, `uv` for dependencies, and `ruff` for
+linting and formatting.
 
 ```bash
-make install
+mise install        # provision the pinned tools
+mise run install    # uv sync -> .venv
+mise run setup-hk   # install git hooks (ruff runs via hk)
 ```
 
-To activate your `virtualenv` run `poetry shell`.
+If you'd rather not use `mise`, install `uv` yourself and run `uv sync`.
 
-## Codestyle
-
-After you run `make install` you can execute the automatic code formatting.
+## Common tasks
 
 ```bash
-make codestyle
+mise run test    # uv run pytest
+mise run lint    # ruff check .
+mise run fmt     # ruff format .
+mise run check   # ruff check + ruff format --check
+mise run docs    # mkdocs serve
+mise run build   # uv build
 ```
 
-### Checks
+## Before submitting
 
-Many checks are configured for this project. Command `make check-style` will run black diffs, darglint docstring style and mypy.
-The `make check-safety` command will look at the security of your code.
+1. Add your changes (and tests for new behaviour).
+2. Update the docs if you changed something significant.
+3. Run `mise run fmt`, then `mise run check`.
+4. Run `mise run test`.
 
-You can also use `STRICT=1` flag to make the check be strict.
-
-### Before submitting
-
-Before submitting your code please do the following steps:
-
-1. Add any changes you want
-1. Add tests for the new changes
-1. Edit documentation if you have changed something significant
-1. Run `make codestyle` to format your changes.
-1. Run `STRICT=1 make check-style` to ensure that types and docs are correct
-1. Run `STRICT=1 make check-safety` to ensure that security of your code is correct
+The `hk` pre-commit hook runs `ruff` automatically on commit.
 
 ## Other help
 
-You can contribute by spreading a word about this library.
-It would also be a huge contribution to write
-a short article on how you are using this project.
-You can also share your best practices with us.
+You can contribute by spreading the word about this library, writing a short
+article on how you use it, or sharing your best practices with us.

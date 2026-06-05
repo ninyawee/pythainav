@@ -1,49 +1,30 @@
+name: Publish to PyPI
 
-name: Python package to PyPI
 on:
   push:
     tags:
       - 'v*.*.*'
 
+permissions:
+  contents: write
+
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
 
-      - name: Get tag
-        id: tag
-        run: echo ::set-output name=tag::${GITHUB_REF#refs/tags/}
+      - name: Build distribution
+        run: uv build
 
-      - uses: actions/setup-python@v4
-        with:
-          python-version: 3.9
-
-      - name: Install and configure Poetry
-        uses: snok/install-poetry@v1
-        with:
-          version: latest
-          virtualenvs-create: false
-          virtualenvs-in-project: false
-
-      - name: Build project for distribution
-        run: poetry build
-
-      - name: Check Version
-        id: check-version
-        run: |
-          [[ "$(poetry version --short)" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] \
-            || echo ::set-output name=prerelease::true
-      
-      - name: Create Release
+      - name: Create GitHub release
         uses: ncipollo/release-action@v1
         with:
           artifacts: "dist/*"
           token: ${{ secrets.GITHUB_TOKEN }}
-          draft: false
-          prerelease: steps.check-version.outputs.prerelease == 'true'
 
-      - name: publish to pypi
+      - name: Publish to PyPI
         env:
-          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKEN }}
-        run: poetry publish
+          UV_PUBLISH_TOKEN: ${{ secrets.PYPI_TOKEN }}
+        run: uv publish

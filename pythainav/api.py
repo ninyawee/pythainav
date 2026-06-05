@@ -1,9 +1,4 @@
-from typing import List
-
-try:
-    from typing import Literal
-except ImportError:
-    from typing_extensions import Literal
+from typing import Literal
 
 from . import sources
 from .nav import Nav
@@ -56,7 +51,7 @@ def get_all(
         "1D", "1W", "1M", "6M", "YTD", "1Y", "3Y", "5Y", "10Y", "MAX"
     ] = "1Y",
     **kargs,
-) -> List[Nav]:
+) -> list[Nav]:
     """
     Gets the latest NAV
 
