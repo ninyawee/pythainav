@@ -20,6 +20,7 @@ Documentation = "https://pythainav.nutchanon.org/"
 [dependency-groups]
 dev = [
     "pytest>=8",
+    "responses>=0.25",
     "pandas>=2",
     "ruff>=0.6",
     "mkdocs>=1.5",
@@ -48,4 +49,7 @@ ignore = ["E501", "B019"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "--tb=short"
+addopts = "--tb=short --strict-markers"
+markers = [
+    "network: hits the live Finnomena API (excluded in CI via -m 'not network')",
+]

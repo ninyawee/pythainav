@@ -29,7 +29,5 @@ jobs:
       - name: Install dependencies
         run: uv sync --python ${{ matrix.python-version }}
       - name: Run tests
-        env:
-          FUND_FACTSHEET_KEY: ${{ secrets.FUND_FACTSHEET_KEY }}
-          FUND_DAILY_INFO_KEY: ${{ secrets.FUND_DAILY_INFO_KEY }}
-        run: uv run pytest
+        # Skip live-API tests: Finnomena returns non-JSON to datacenter IPs.
+        run: uv run pytest -m "not network"
