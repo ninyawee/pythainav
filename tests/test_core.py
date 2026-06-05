@@ -9,7 +9,7 @@ def test_get_nav():
 
 
 def test_get_nav_with_date():
-    oil_nav = nav.get("TMBOIL", date="1 week ago")
+    oil_nav = nav.get("KT-PRECIOUS", date="1 week ago")
     print(oil_nav)
     assert oil_nav.value >= 0
 
