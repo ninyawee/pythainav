@@ -14,7 +14,6 @@ furl = "^2.1"
 dateparser = "^1.0.0"
 dataclasses = {version = "^0.7.0", python = "3.6"}
 requests = "^2.22"
-fuzzywuzzy = {extras = ["speedup"], version = ">=0.17,<0.19"}
 importlib-metadata = "^4.8.1"
 typing-extensions = "^3.10.0"
 
