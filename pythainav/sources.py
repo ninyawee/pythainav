@@ -36,10 +36,11 @@ class Finnomena(Source):
         super().__init__()
 
     def _find_earliest(self, navs: List[Nav], date: str):
-        navs.sort(key=lambda x: x.updated, reverse=True)
+        # sort a copy: get_range() is lru_cached, so navs is a shared object
+        ordered = sorted(navs, key=lambda x: x.updated, reverse=True)
 
         date = dateparser.parse(date)
-        for nav in navs:
+        for nav in ordered:
             if date >= nav.updated:
                 return nav
         return None
@@ -47,26 +48,23 @@ class Finnomena(Source):
     def get(self, fund: str, date: str = None):
         fund = fund.lower()
 
+        # Finnomena retired the nav/latest endpoint (now returns {}); derive the
+        # latest NAV from the working v2 range endpoint instead.
+        navs = self.get_range(fund)
+
         if date:
-            navs = self.get_range(fund)
             return self._find_earliest(navs, date)
 
-        name2fund = self.list()
+        if not navs:
+            return None
 
-        url = self.base / "nav" / "latest"
-        url.args["fund"] = name2fund[fund]["id"]
-
-        # convert to str
-        url = url.url
-
-        nav = requests.get(url).json()
-        nav = Nav(
-            value=float(nav["value"]),
-            updated=datetime.datetime.strptime(nav["nav_date"], "%Y-%m-%d"),
+        latest = max(navs, key=lambda nav: nav.updated)
+        return Nav(
+            value=latest.value,
+            updated=latest.updated,
             tags={"latest"},
             fund=fund,
         )
-        return nav
 
     # cache here should be sensible since the fund is not regulary update
     # TODO: change or ttl cache with timeout = [1 hour, 1 day]
