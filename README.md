@@ -3,8 +3,7 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FCircleOnCircles%2Fpythainav.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FCircleOnCircles%2Fpythainav?ref=badge_shield)
-![Tests](https://github.com/ninyawee/pythainav/workflows/Tests/badge.svg?branch=master)
-[![codecov](https://codecov.io/gh/ninyawee/pythainav/branch/develop/graph/badge.svg)](https://codecov.io/gh/ninyawee/pythainav)
+[![Test](https://github.com/ninyawee/pythainav/actions/workflows/test.yml/badge.svg)](https://github.com/ninyawee/pythainav/actions/workflows/test.yml)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f868488db4ba4266a112c3432301c6b4)](https://www.codacy.com/manual/nutchanon/pythainav?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ninyawee/pythainav&amp;utm_campaign=Badge_Grade)
 
 

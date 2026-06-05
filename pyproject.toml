@@ -1,6 +1,6 @@
 [project]
 name = "pythainav"
-version = "0.3.0"
+version = "0.4.0"
 description = "a Python interface to pull thai mutual fund NAV"
 authors = [{ name = "Nutchanon Ninyawee", email = "me@nutchanon.org" }]
 maintainers = [{ name = "Nutchanon Ninyawee", email = "me@nutchanon.org" }]
