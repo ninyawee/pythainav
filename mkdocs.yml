@@ -4,8 +4,8 @@ theme:
 
 # HOW-TO customize <https://squidfunk.github.io/mkdocs-material/getting-started/>
 
-repo_name: 'CircleOnCircles/pythainav'
-repo_url: 'https://github.com/CircleOnCircles/pythainav'
+repo_name: 'ninyawee/pythainav'
+repo_url: 'https://github.com/ninyawee/pythainav'
 
 markdown_extensions:
   - codehilite:

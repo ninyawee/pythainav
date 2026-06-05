@@ -3,17 +3,17 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FCircleOnCircles%2Fpythainav.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FCircleOnCircles%2Fpythainav?ref=badge_shield)
-![Tests](https://github.com/CircleOnCircles/pythainav/workflows/Tests/badge.svg?branch=master)
-[![codecov](https://codecov.io/gh/CircleOnCircles/pythainav/branch/develop/graph/badge.svg)](https://codecov.io/gh/CircleOnCircles/pythainav)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f868488db4ba4266a112c3432301c6b4)](https://www.codacy.com/manual/nutchanon/pythainav?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CircleOnCircles/pythainav&amp;utm_campaign=Badge_Grade)
+![Tests](https://github.com/ninyawee/pythainav/workflows/Tests/badge.svg?branch=master)
+[![codecov](https://codecov.io/gh/ninyawee/pythainav/branch/develop/graph/badge.svg)](https://codecov.io/gh/ninyawee/pythainav)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f868488db4ba4266a112c3432301c6b4)](https://www.codacy.com/manual/nutchanon/pythainav?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ninyawee/pythainav&amp;utm_campaign=Badge_Grade)
 
 
 
-![cover image](https://github.com/CircleOnCircles/pythainav/raw/master/extra/pythainav.png)
+![cover image](https://github.com/ninyawee/pythainav/raw/master/extra/pythainav.png)
 
 
 
-> อยากชวนทุกคนมาร่วมพัฒนา ติชม แนะนำ เพื่อให้ทุกคนเข้าถึงข้อมูลการง่ายขึ้น [เริ่มต้นได้ที่นี้](https://github.com/CircleOnCircles/pythainav/issues) หรือเข้ามา Chat ใน [Discord](https://discord.gg/jjuMcKZ) ได้เลย 😊
+> อยากชวนทุกคนมาร่วมพัฒนา ติชม แนะนำ เพื่อให้ทุกคนเข้าถึงข้อมูลการง่ายขึ้น [เริ่มต้นได้ที่นี้](https://github.com/ninyawee/pythainav/issues) หรือเข้ามา Chat ใน [Discord](https://discord.gg/jjuMcKZ) ได้เลย 😊
 
 📖 Documentation is here. คู่มือการใช้งานอยู่ที่นี่ <https://pythainav.nutchanon.org/>
 
@@ -56,11 +56,11 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="http://nutchanon.org"><img src="https://avatars2.githubusercontent.com/u/8089231?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nutchanon Ninyawee</b></sub></a><br /><a href="https://github.com/CircleOnCircles/pythainav/commits?author=CircleOnCircles" title="Code">💻</a> <a href="#infra-CircleOnCircles" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
-    <td align="center"><a href="https://github.com/sctnightcore"><img src="https://avatars2.githubusercontent.com/u/23263315?v=4?s=100" width="100px;" alt=""/><br /><sub><b>sctnightcore</b></sub></a><br /><a href="https://github.com/CircleOnCircles/pythainav/commits?author=sctnightcore" title="Code">💻</a> <a href="#talk-sctnightcore" title="Talks">📢</a> <a href="#ideas-sctnightcore" title="Ideas, Planning, & Feedback">🤔</a></td>
-    <td align="center"><a href="https://github.com/angonyfox"><img src="https://avatars3.githubusercontent.com/u/1295513?v=4?s=100" width="100px;" alt=""/><br /><sub><b>angonyfox</b></sub></a><br /><a href="https://github.com/CircleOnCircles/pythainav/commits?author=angonyfox" title="Code">💻</a> <a href="https://github.com/CircleOnCircles/pythainav/commits?author=angonyfox" title="Tests">⚠️</a></td>
-    <td align="center"><a href="https://github.com/samupra"><img src="https://avatars.githubusercontent.com/u/24209940?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Pongpira Upra</b></sub></a><br /><a href="https://github.com/CircleOnCircles/pythainav/commits?author=samupra" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/namv2012"><img src="https://avatars.githubusercontent.com/u/50385570?v=4?s=100" width="100px;" alt=""/><br /><sub><b>namv2012</b></sub></a><br /><a href="https://github.com/CircleOnCircles/pythainav/commits?author=namv2012" title="Code">💻</a></td>
+    <td align="center"><a href="http://nutchanon.org"><img src="https://avatars2.githubusercontent.com/u/8089231?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nutchanon Ninyawee</b></sub></a><br /><a href="https://github.com/ninyawee/pythainav/commits?author=ninyawee" title="Code">💻</a> <a href="#infra-ninyawee" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+    <td align="center"><a href="https://github.com/sctnightcore"><img src="https://avatars2.githubusercontent.com/u/23263315?v=4?s=100" width="100px;" alt=""/><br /><sub><b>sctnightcore</b></sub></a><br /><a href="https://github.com/ninyawee/pythainav/commits?author=sctnightcore" title="Code">💻</a> <a href="#talk-sctnightcore" title="Talks">📢</a> <a href="#ideas-sctnightcore" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/angonyfox"><img src="https://avatars3.githubusercontent.com/u/1295513?v=4?s=100" width="100px;" alt=""/><br /><sub><b>angonyfox</b></sub></a><br /><a href="https://github.com/ninyawee/pythainav/commits?author=angonyfox" title="Code">💻</a> <a href="https://github.com/ninyawee/pythainav/commits?author=angonyfox" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/samupra"><img src="https://avatars.githubusercontent.com/u/24209940?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Pongpira Upra</b></sub></a><br /><a href="https://github.com/ninyawee/pythainav/commits?author=samupra" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/namv2012"><img src="https://avatars.githubusercontent.com/u/50385570?v=4?s=100" width="100px;" alt=""/><br /><sub><b>namv2012</b></sub></a><br /><a href="https://github.com/ninyawee/pythainav/commits?author=namv2012" title="Code">💻</a></td>
   </tr>
 </table>
 
