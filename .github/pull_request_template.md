@@ -1,7 +1,8 @@
 Hi maintainers ✋,
 
 I did
-- [ ] lint code using `pre-commit run --all-files`
+- [ ] format & lint with `mise run fmt` and `mise run check`
+- [ ] run tests with `mise run test`
 
 Feel free to review my changes,
 A dev dude 😉
