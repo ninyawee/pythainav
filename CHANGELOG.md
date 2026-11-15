@@ -4,6 +4,12 @@
 ### Add
  - new data source Sec.or.th
 
+### Changed
+ - require Python >= 3.10 (drop Python 3.9, end-of-life since October 2025);
+   CI tested on Python 3.10–3.13
+ - security: bump locked urllib3, requests, pytest, mkdocs-material and
+   pymdown-extensions to patched releases
+
 ## 0.4.0 - 5 June 2026
 ### Fixed
  - `get()` works again: Finnomena retired the `nav/latest` endpoint, so the

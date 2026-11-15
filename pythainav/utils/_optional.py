@@ -1,13 +1,12 @@
 import importlib
 import types
-from typing import Optional
 
 
 def import_optional_dependency(
     name: str,
     extra: str = "",
     raise_on_missing: bool = True,
-) -> Optional[types.ModuleType]:
+) -> types.ModuleType | None:
     """Import an optional dependency.
 
     By default, if the dependency is missing an ``ImportError`` with a helpful
